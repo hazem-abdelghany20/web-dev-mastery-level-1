@@ -1,0 +1,32 @@
+body{
+    font-family: sans-serif;
+    background-image: url("background.jpg");
+    background-position: center;
+    background-size: cover;
+    
+  }
+  h1{
+    font-size: 40px;
+  }
+  h2{
+    font-size: 30px;
+  }
+  .item p{
+    font-size:18px;
+  }
+  .menu{
+    background-color: burlywood;
+    max-width: 500px;
+    padding-top: 20px;
+    border-radius: 10px;
+    margin:auto;
+    border: 5px solid brown;
+    
+  }
+  img{
+    margin:auto;
+    display:block;
+  }
+  h2,h1,p{
+    text-align: center;
+  }

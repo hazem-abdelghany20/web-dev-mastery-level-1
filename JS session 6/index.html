@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Guess my number</title>
+    <style>
+      body {
+        font-family: "Roboto Mono", monospace;
+        color: white;
+        background-color: rgba(56, 56, 56,1);
+      }
+
+      .title {
+        padding-top: 3%;
+        font-size: xx-large;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      .note {
+        position: absolute;
+        right: 5%;
+        top: 0px;
+      }
+      .number {
+        background-color: darkgray;
+        margin: 0 40%;
+        width: 20%px;
+        font-size: 70px;
+        text-align: center;
+        align-content: center;
+      }
+      .block {
+        padding: 50px;
+        display: flex;
+        flex: auto;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      .block1 {
+        padding-top: 10px;
+        max-width: 50%;
+      }
+      .block2 {
+        max-width: 50%;
+      }
+      input[type="text"] {
+        border: 2px solid darkgrey;
+        width: 80px;
+        height: 80px;
+        border-radius: 4px;
+        font-size: 70px;
+      }
+      input[type="submit"] {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="again" type="submit" value="PlayAgain" />
+    <h1 class="title">Guess my number!</h1>
+    <p class="note">(between 1-20)</p>
+    <p class="number">?</p>
+    <div class="block">
+      <div class="block1">
+        <input type="text" id="fname" class="guess" name="guess" />
+        <br /><br />
+        <input class="check" type="submit" value="Submit" />
+      </div>
+      <div class="block2">
+        <p class="message">Start guessing...</p>
+        <p class="score">Score:</p>
+        <p class="scorenum">20</p>
+        <p class="high">highScore: <p class="highscorenum">0</p></p>
+      </div>
+    </div>
+    <script>
+
+        //generate a random number
+        let secretNumber = Math.trunc((Math.random()*20))+1
+
+        //add eventlistener to the button submit
+        //this listener takes the input
+        document.querySelector(".check").addEventListener("click", function () {
+            isNumber = Number(document.querySelector(".guess").value);
+        let number = document.querySelector(".guess").value;
+        currentScore = document.querySelector(".scorenum").textContent;
+        if(!isNumber){
+            document.querySelector(".message").textContent = "NOT A NUMBER ";
+        //if the number is correct we change the background to green and display you win, and if the highscore is higher than the old one update it to the new one
+        }else if (number == secretNumber) {
+          document.querySelector("body").style.backgroundColor= '#60b347'
+          document.querySelector(".message").textContent = "YOU WIN ";
+          document.querySelector(".number").textContent = secretNumber;
+          if(currentScore > document.querySelector(".highscorenum").textContent)
+          document.querySelector(".highscorenum").textContent = currentScore;
+          document.querySelector(".again").addEventListener("click", function () {
+            document.querySelector("body").style.backgroundColor= '#565656'
+            document.querySelector(".scorenum").textContent = 20;
+            secretNumber = Math.trunc((Math.random()*20))+1;
+            document.querySelector(".number").textContent = "?";
+            document.querySelector(".guess").value = "";
+          });
+        } else if (number < secretNumber) {
+          document.querySelector(".message").textContent = "TOO LOW ";
+          
+          document.querySelector(".scorenum").textContent = currentScore - 1;
+        } else {
+          document.querySelector(".message").textContent = "TOO HIGH ";
+          document.querySelector(".scorenum").textContent = currentScore - 1;
+        }
+      });
+    </script>
+    <script src="explanation.js"></script>
+  </body>
+</html>
